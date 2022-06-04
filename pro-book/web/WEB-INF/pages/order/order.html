@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>我的訂單</title>
+    <link rel="stylesheet" th:href="@{/static/css/minireset.css}"/>
+    <link rel="stylesheet" th:href="@{/static/css/common.css}"/>
+    <link rel="stylesheet" th:href="@{/static/css/cart.css}"/>
+    <link rel="stylesheet" th:href="@{/static/css/bookManger.css}"/>
+    <link rel="stylesheet" th:href="@{/static/css/orderManger.css}"/>
+  </head>
+  <body>
+    <div class="header">
+      <div class="w">
+        <div class="header-left">
+          <a href="../index.html">
+            <img th:src="@{/static/img/logo.gif}" alt=""
+          /></a>
+          <h1>我的订单</h1>
+        </div>
+        <div class="header-right">
+          <h3>歡迎<span th:text="${session.currentUser.uname}">張總</span>光臨書城</h3>
+          <div class="order"><a th:href="@{/order.do?operate=getOrderList}">我的訂單</a></div>
+          <div class="destory"><a href="../index.html">註銷</a></div>
+          <div class="gohome">
+            <a th:href="@{/page.do?operate=page&page=index}">返回</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="list">
+      <div class="w">
+        <table>
+          <thead>
+            <tr>
+              <th>訂單號</th>
+              <th>訂單日期</th>
+              <th>訂單金額</th>
+              <th>訂單數量</th>
+              <th>訂單狀態</th>
+              <th>訂單詳情</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="order : ${session.currentUser.orderList}" th:object="${order}">
+              <td th:text="*{orderNo}">12354456895</td>
+              <td th:text="${#temporals.format(order.orderDate,'yyyy-MM-dd HH:mm:ss')}">2015.04.23</td>
+              <td th:text="*{orderMoney}">90.00</td>
+              <td th:text="*{totalBookCount}">88</td>
+              <td><a href="" class="send">等待發貨</a></td>
+              <td><a href="">查看詳情</a></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="footer">
+          <div class="footer-right">
+            <div>首頁</div>
+            <div>上一頁</div>
+            <ul>
+              <li class="active">1</li>
+              <li>2</li>
+              <li>3</li>
+            </ul>
+            <div>下一頁</div>
+            <div>末頁</div>
+            <span>共10頁</span>
+            <span>30條紀錄</span>
+            <span>到第</span>
+            <input type="text" />
+            <span>頁</span>
+            <button>確定</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="down">
+        Copyright ©2022
+      </div>
+    </div>
+  </body>
+</html>

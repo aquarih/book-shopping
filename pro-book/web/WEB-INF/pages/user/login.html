@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>書城會員登入頁面</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/static/css/style.css}" />
+  </head>
+  <body>
+    <div id="login_header">
+      <a th:href="@{/index.html}">
+        <img class="logo_img" alt="" th:href="@{/static/img/logo.gif}" />
+      </a>
+    </div>
+
+    <div class="login_banner">
+      <div id="l_content">
+        <span class="login_word">歡迎登入</span>
+      </div>
+
+      <div id="content">
+        <div class="login_form">
+          <div class="login_box">
+            <div class="tit">
+              <h1>會員登入</h1>
+            </div>
+            <div class="msg_cont">
+              <b></b>
+              <span class="errorMsg">請輸入用戶名和密碼</span>
+            </div>
+            <div class="form">
+              <form th:action="@{/user.do}" method="post">
+                <input type="hidden" name="operate" value="login"/>
+                <label>用戶名稱：</label>
+                <input class="itxt" type="text" placeholder="請輸入用戶名" autocomplete="off" tabindex="1"
+                  name="uname" id="username" value="lina" />
+                <br />
+                <br />
+                <label>用戶密碼：</label>
+                <input class="itxt" type="password" placeholder="請輸入密碼" autocomplete="off" tabindex="1"
+                  name="pwd" id="password" value="ok"/>
+                <br />
+                <br />
+                <input type="submit" value="登入" id="sub_btn" />
+              </form>
+              <div class="tit">
+                <a th:href="@{page.do?operate=page&page=user/regist}">立即註冊</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="bottom">
+      <span>
+        Copyright &copy;2022
+      </span>
+    </div>
+  </body>
+</html>
